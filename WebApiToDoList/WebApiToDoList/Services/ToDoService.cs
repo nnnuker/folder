@@ -83,8 +83,6 @@ namespace WebApiToDoList.Services {
         /// <param name="id">The todo Id to delete.</param>
         public async Task DeleteItem(int id) {
             var result = await httpClient.DeleteAsync(string.Format(serviceApiUrl + DeleteUrl, id));
-            Debug.WriteLine("CreateUrl item succ");
-
             result.EnsureSuccessStatusCode();
         }
     }
