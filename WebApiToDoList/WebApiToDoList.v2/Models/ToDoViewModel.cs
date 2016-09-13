@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WebApiToDoList.Models
-{
-    public class ToDoItemViewModel
-    {
+﻿namespace WebApiToDoList.Models {
+    public class ToDoItemViewModel {
         /// <summary>
         /// Gets or sets to do identifier.
         /// </summary>
