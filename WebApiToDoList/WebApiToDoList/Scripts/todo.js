@@ -1,47 +1,47 @@
-﻿var storage = function () {
-    var add = function (item) {
-        window.localStorage.setItem("item" + item.ToDoId, JSON.stringify(item));
-    }
+﻿//var storage = function () {
+//    var add = function (item) {
+//        window.localStorage.setItem("item" + item.ToDoId, JSON.stringify(item));
+//    }
 
-    var remove = function (item) {
-        window.localStorage.removeItem("item" + item.ToDoId);
-    }
+//    var remove = function (item) {
+//        window.localStorage.removeItem("item" + item.ToDoId);
+//    }
 
-    var getAll = function () {
-        var archive = []; // Notice change here
-        var keys = Object.keys(localStorage);
-        var i = keys.length - 1;
+//    var getAll = function () {
+//        var archive = []; // Notice change here
+//        var keys = Object.keys(localStorage);
+//        var i = keys.length - 1;
 
-        while (i) {
-            archive[i] = JSON.parse(localStorage.getItem(keys[i]));
-            i--;
-        }
+//        while (i) {
+//            archive[i] = JSON.parse(localStorage.getItem(keys[i]));
+//            i--;
+//        }
 
-        return archive;
-    }
+//        return archive;
+//    }
 
-    var set = function (items) {
-        //        var items = JSON.parse(jsonItems);
-        if (items.length !== 0) {
-            $.each(items, function (i, item) {
-                add("item" + item.ToDoId, JSON.stringify(item));
-            });
-        }
-    }
+//    var set = function (items) {
+//        //        var items = JSON.parse(jsonItems);
+//        if (items.length !== 0) {
+//            $.each(items, function (i, item) {
+//                add("item" + item.ToDoId, JSON.stringify(item));
+//            });
+//        }
+//    }
 
-    //var update = function(item) {
-    //    window.localStorage.removeItem("item"+item.ToDoId);
-    //    window.localStorage.setItem("item" + item.ToDoId, JSON.stringify(item));
-    //}
+//    //var update = function(item) {
+//    //    window.localStorage.removeItem("item"+item.ToDoId);
+//    //    window.localStorage.setItem("item" + item.ToDoId, JSON.stringify(item));
+//    //}
 
-    return {
-        add: add,
-        remove: remove,
-        getAll: getAll,
-        set: set
-        //update: update
-    };
-}();
+//    return {
+//        add: add,
+//        remove: remove,
+//        getAll: getAll,
+//        set: set
+//        //update: update
+//    };
+//}();
 
 
 var tasksManager = function () {
@@ -50,10 +50,16 @@ var tasksManager = function () {
     // @parentSelector: selector to append a row to.
     // @obj: task object to append.
     var appendRow = function (parentSelector, obj) {
+        //TODO some ui improvements required
+        var str = "";
+        if (obj.ToDoId === 0) {
+            str = "disabled";
+        }
+
         var tr = $("<tr data-id='" + obj.ToDoId + "'></tr>");
-        tr.append("<td><input type='checkbox' class='completed' " + (obj.IsCompleted ? "checked" : "") + "/></td>");
+        tr.append("<td><input type='checkbox' class='completed' " + (obj.IsCompleted ? "checked" : "") + " " + str + "/></td>");
         tr.append("<td class='name' >" + obj.Name + "</td>");
-        tr.append("<td><input type='button' class='delete-button' value='Delete' /></td>");
+        tr.append("<td><input type='button' class='delete-button' value='Delete' "+ str +"/></td>");
         $(parentSelector).append(tr);
     }
 
