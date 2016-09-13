@@ -1,6 +1,10 @@
 ﻿
 namespace WebApiToDoList.Infastructure.Repository.DTO {
     public class Item {
-        //TODO: ToDoViewModel + int? RemoteId
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public bool IsCompleted { get; set; }
+        public string Name { get; set; }
+        public int? RemoteId { get; set; }
     }
 }
