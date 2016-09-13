@@ -141,6 +141,8 @@
     <Compile Include="Infastructure\Worker\QueueTasks.cs" />
     <Compile Include="Infastructure\Worker\Worker.cs" />
     <Compile Include="Infrastructure\DropBoxHelper.cs" />
+    <Compile Include="Infrastructure\Repositories\IRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\LocalRepository.cs" />
     <Compile Include="Models\ToDoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DTO\Item.cs" />
