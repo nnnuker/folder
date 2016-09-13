@@ -16,9 +16,9 @@ namespace WebApiToDoList.Controllers {
         /// Returns all todo-items for the current user.
         /// </summary>
         /// <returns>The list of todo-items.</returns>
-        public IList<ToDoItemViewModel> Get() {
-            var userId = _userService.GetOrCreateUser();
-            return _todoService.GetItems(userId);
+        public async Task<IList<ToDoItemViewModel>> Get() {
+            var userId = await _userService.GetOrCreateUser();
+            return await _todoService.GetItems(userId);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace WebApiToDoList.Controllers {
         /// </summary>
         /// <param name="todo">The todo-item to update.</param>
         public async Task Put(ToDoItemViewModel todo) {
-            todo.UserId = _userService.GetOrCreateUser();
+            todo.UserId = await _userService.GetOrCreateUser();
             await _todoService.UpdateItem(todo);
         }
 
@@ -43,7 +43,7 @@ namespace WebApiToDoList.Controllers {
         /// </summary>
         /// <param name="todo">The todo-item to create.</param>
         public async Task Post(ToDoItemViewModel todo) {
-            todo.UserId = _userService.GetOrCreateUser();
+            todo.UserId = await _userService.GetOrCreateUser();
             await _todoService.CreateItem(todo);
         }
     }

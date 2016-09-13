@@ -39,7 +39,7 @@
         remove: remove,
         getAll: getAll,
         set: set,
-update:update
+        update:update
     };
 }();
 
@@ -72,13 +72,13 @@ var tasksManager = function () {
             appendRow(parentSelector, item);
         });
     };
-  
 
     // starts loading tasks from server.
     // @returns a promise.
     var loadTasks = function () {
         
         if (storage.getAll().length === 0) {
+            debugger;
 //TODO: stand by func ready
             storage.set($.getJSON("/api/todos"));
         }

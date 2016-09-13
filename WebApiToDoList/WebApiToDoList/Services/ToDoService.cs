@@ -54,8 +54,8 @@ namespace WebApiToDoList.Services {
         /// </summary>
         /// <param name="userId">The User Id.</param>
         /// <returns>The list of todos.</returns>
-        public IList<ToDoItemViewModel> GetItems(int userId) {
-            var dataAsString = httpClient.GetStringAsync(string.Format(serviceApiUrl + GetAllUrl, userId)).Result;
+        public async Task<IList<ToDoItemViewModel>> GetItems(int userId) {
+            var dataAsString = await httpClient.GetStringAsync(string.Format(serviceApiUrl + GetAllUrl, userId));
             return JsonConvert.DeserializeObject<IList<ToDoItemViewModel>>(dataAsString);
         }
 
@@ -63,7 +63,7 @@ namespace WebApiToDoList.Services {
         /// Creates a todo. UserId is taken from the model.
         /// </summary>
         /// <param name="item">The todo to create.</param>
-        public async Task  CreateItem(ToDoItemViewModel item) {
+        public async Task CreateItem(ToDoItemViewModel item) {
             var result = await httpClient.PostAsJsonAsync(serviceApiUrl + CreateUrl, item);
             result.EnsureSuccessStatusCode();
         }
