@@ -13,9 +13,9 @@ namespace WebApiToDoList.v2.Infastructure.Worker {
             while (true) {
                 lockSlim.EnterWriteLock();
                 try {
-                    if (!Query.IsEmpty()) {
-                        var task = Query.Dequeue();
-                        Task.Run(() => { task.Do(); });
+                    if (!Queue.IsEmpty()) {
+                        var task = Queue.Dequeue();
+                        task.Do();
                         Thread.Sleep(5);
                     }
                 } finally {
