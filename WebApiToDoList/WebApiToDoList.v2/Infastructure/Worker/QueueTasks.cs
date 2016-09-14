@@ -4,16 +4,23 @@ using WebApiToDoList.v2.Infastructure.Actions;
 
 namespace WebApiToDoList.v2.Infastructure.Worker {
     public class QueueTasks {
-        private readonly Queue<Action> queue = new Queue<Action>();
-        //var someQueue
+        private Queue<Action> Queue { get; set; }
+        public static QueueTasks Instance { get; }
+        private QueueTasks () {
+            Queue = new Queue<Action>();
+        }
+
+        static QueueTasks () {
+            Instance = new QueueTasks();
+        }
         public void Enqueue(Action action) {
-            queue.Enqueue(action);
+            Queue.Enqueue(action);
         }
         public Action Dequeue() {
-            return queue.Dequeue();
+            return Queue.Dequeue();
         }
         public bool IsEmpty() {
-            return queue.Count() == 0;
+            return Queue.Count == 0;
         }
     }
 }

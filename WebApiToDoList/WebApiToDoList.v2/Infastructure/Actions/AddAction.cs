@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
-using WebApiToDoList.v2.Infastructure.Repository;
 using WebApiToDoList.v2.Infastructure.Repository.DTO;
+using WebApiToDoList.v2.Infastructure.Services;
 
 namespace WebApiToDoList.v2.Infastructure.Actions {
     public class AddAction : Action {
         private const string CreateUrl = "ToDos";
         private const string GetAllUrl = "ToDos?userId={0}";
         private readonly Item item;
-        private readonly List<int> removeIds;
+        private readonly IList<int> removeIds;
 
-        public AddAction(Item item, List<int> removeIds) {
+        public AddAction(Item item, IList<int> removeIds) {
             this.item = item;
             this.removeIds = removeIds;
         }
@@ -32,7 +32,7 @@ namespace WebApiToDoList.v2.Infastructure.Actions {
                 }
             }
             item.RemoteId = itemId;
-            LocalRepository.Instance.LocalUpdate(item);
+            Service.Instance.LocalUpdate(item);
         }
     }
 

@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using WebApiToDoList.v2.Infastructure.Mappers;
-using WebApiToDoList.v2.Infastructure.Repository;
+using WebApiToDoList.v2.Infastructure.Services;
 using WebApiToDoList.v2.Models;
 
 namespace WebApiToDoList.v2.Services {
@@ -16,11 +16,14 @@ namespace WebApiToDoList.v2.Services {
         private const string GetAllUrl = "ToDos?userId={0}";
         private readonly string serviceApiUrl = ConfigurationManager.AppSettings["ToDoServiceUrl"];
 
-        private readonly LocalRepository repository = LocalRepository.Instance;
+        private readonly IService service;
+
         /// <summary>
         /// Creates the service.
         /// </summary>
-        public ToDoService() { }
+        public ToDoService() {
+            service = Service.Instance;
+        }
 
         /// <summary>
         /// Gets all todos for the user.
@@ -29,7 +32,7 @@ namespace WebApiToDoList.v2.Services {
         /// <returns>The list of todos.</returns>
         public IList<ToDoItemViewModel> GetItems(int userId, bool isInit) {
             if (isInit)
-                return repository.GetAll().Select(item => item.ToViewModel()).ToList();
+                return service.GetAll().Select(item => item.ToViewModel()).ToList();
             else {
                 var httpClient = new HttpClient();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -43,7 +46,7 @@ namespace WebApiToDoList.v2.Services {
         /// </summary>
         /// <param name="item">The todo to create.</param>
         public void CreateItem(ToDoItemViewModel item) {
-            repository.Add(item.ToItem());
+            service.Add(item.ToItem());
 //            httpClient.PostAsJsonAsync(serviceApiUrl + CreateUrl, item)
 //                .Result.EnsureSuccessStatusCode();
         }
@@ -53,7 +56,7 @@ namespace WebApiToDoList.v2.Services {
         /// </summary>
         /// <param name="item">The todo to update.</param>
         public void UpdateItem(ToDoItemViewModel item) {
-            repository.Update(item.ToItem());
+            service.Update(item.ToItem());
 //            httpClient.PutAsJsonAsync(serviceApiUrl + UpdateUrl, item)
 //                .Result.EnsureSuccessStatusCode();
         }
@@ -63,7 +66,7 @@ namespace WebApiToDoList.v2.Services {
         /// </summary>
         /// <param name="id">The todo Id to delete.</param>
         public void DeleteItem(int id) {
-            repository.Delete(id);
+            service.Delete(id);
         }
     }
 }

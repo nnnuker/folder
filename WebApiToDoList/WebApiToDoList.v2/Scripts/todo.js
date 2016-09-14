@@ -36,7 +36,6 @@
     // @name: name of new task.
     // @return a promise.
     var createTask = function (isCompleted, name) {
-        debugger;
         return $.post("/api/todos", {
             IsCompleted: isCompleted,
             Name: name
@@ -86,7 +85,6 @@
 $(function () {
     // add new task button click handler
     $("#newCreate").click(function () {
-        debugger;
         var name = $('#newName')[0].value;
 
         tasksManager.createTask(false, name)
@@ -98,7 +96,6 @@ $(function () {
 
     // bind update task checkbox click handler
     $("#listItems").on('change', '.completed', function () {
-        debugger;
         var li = $(this).parent();
         var taskId = li.attr("data-id");
         var isCompleted = $(this).find(".name")[0].checked;
@@ -113,7 +110,6 @@ $(function () {
 
     // bind delete button click for future rows
     $("#listItems").on("click", ".delete-button", function () {
-        debugger;
         var taskId = $(this).parent().attr("data-id");
         tasksManager.deleteTask(taskId)
             .then(tasksManager.loadTasks)

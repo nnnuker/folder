@@ -1,50 +1,4 @@
-﻿//var storage = function () {
-//    var add = function (item) {
-//        window.localStorage.setItem("item" + item.ToDoId, JSON.stringify(item));
-//    }
-
-//    var remove = function (item) {
-//        window.localStorage.removeItem("item" + item.ToDoId);
-//    }
-
-//    var getAll = function () {
-//        var archive = []; // Notice change here
-//        var keys = Object.keys(localStorage);
-//        var i = keys.length - 1;
-
-//        while (i) {
-//            archive[i] = JSON.parse(localStorage.getItem(keys[i]));
-//            i--;
-//        }
-
-//        return archive;
-//    }
-
-//    var set = function (items) {
-//        //        var items = JSON.parse(jsonItems);
-//        if (items.length !== 0) {
-//            $.each(items, function (i, item) {
-//                add("item" + item.ToDoId, JSON.stringify(item));
-//            });
-//        }
-//    }
-
-//    //var update = function(item) {
-//    //    window.localStorage.removeItem("item"+item.ToDoId);
-//    //    window.localStorage.setItem("item" + item.ToDoId, JSON.stringify(item));
-//    //}
-
-//    return {
-//        add: add,
-//        remove: remove,
-//        getAll: getAll,
-//        set: set
-//        //update: update
-//    };
-//}();
-
-
-var tasksManager = function () {
+﻿var tasksManager = function () {
 
     // appends a row to the tasks table.
     // @parentSelector: selector to append a row to.
@@ -170,20 +124,14 @@ $(function () {
         var name = tr.find('.name').text();
 
         tasksManager.updateTask(taskId, isCompleted, name);
-        //.then(tasksManager.loadTasks)
-        //.done(function (tasks) {
-        //    tasksManager.displayTasks("#tasks > tbody", tasks);
-        //});
+
     });
 
     // bind delete button click for future rows
     $('#tasks > tbody').on('click', '.delete-button', function () {
         var taskId = $(this).parent().parent().attr("data-id");
         tasksManager.deleteTask(taskId);
-        //.then(tasksManager.loadTasks)
-        //.done(function (tasks) {
-        //    tasksManager.displayTasks("#tasks > tbody", tasks);
-        //});
+
     });
 
     // load all tasks on startup

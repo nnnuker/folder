@@ -139,6 +139,7 @@
     <Compile Include="Infastructure\Actions\Action.cs" />
     <Compile Include="Infastructure\Actions\UpdateAction.cs" />
     <Compile Include="Infastructure\Mappers\ItemMapper.cs" />
+    <Compile Include="Infastructure\Services\IService.cs" />
     <Compile Include="Infastructure\Worker\QueueTasks.cs" />
     <Compile Include="Infastructure\Worker\Worker.cs" />
     <Compile Include="Models\ToDoViewModel.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Infastructure\Repository\DTO\Item.cs" />
     <Compile Include="Infastructure\Repository\IRepository.cs" />
     <Compile Include="Infastructure\Repository\LocalRepository.cs" />
+    <Compile Include="Infastructure\Services\Service.cs" />
     <Compile Include="Services\ToDoService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>

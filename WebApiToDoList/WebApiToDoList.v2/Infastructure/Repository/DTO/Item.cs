@@ -5,6 +5,7 @@ namespace WebApiToDoList.v2.Infastructure.Repository.DTO {
         public int UserId { get; set; }
         public bool IsCompleted { get; set; }
         public string Name { get; set; }
+        public bool IsDeleted { get; set; }
         public int? RemoteId { get; set; }
     }
 }

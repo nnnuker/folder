@@ -10,7 +10,8 @@ namespace WebApiToDoList.v2.Infastructure.Mappers {
                 Name = model.Name,
                 UserId = model.UserId,
                 IsCompleted = model.IsCompleted,
-                RemoteId = null
+                RemoteId = null,
+                IsDeleted = false
             };
         }
         public static ToDoItemViewModel ToViewModel(this Item item) {
