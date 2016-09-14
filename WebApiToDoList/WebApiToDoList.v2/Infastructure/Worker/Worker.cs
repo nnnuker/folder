@@ -1,21 +1,32 @@
-﻿
+﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using WebApiToDoList.v2.Infastructure.Actions;
 
 namespace WebApiToDoList.v2.Infastructure.Worker {
     //TODO: example
-    public static class Worker {
-        public static QueueTasks Query = new QueueTasks();
+    public class Worker {
+        private static QueueTasks Query = new QueueTasks();
+        private static readonly ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
+
         //TODO: use lock 
-        public static async Task Run() {
+        public void Run() {
             while (true) {
                 if (!Query.IsEmpty()) {
-                   var task = Query.Dequeue();
-                    await Task.Run(() => { task.Do(); });
+                    lockSlim.EnterWriteLock();
+                    try {
+                        var task = Query.Dequeue();
+                        Task.Run(() => { task.Do(); });
+                        Debug.WriteLine("DO ID!");
+                        Thread.Sleep(5);
+                    } finally {
+                        lockSlim.ExitWriteLock();
+                    }
                 }
-                Thread.Sleep(50);
             }
         }
+
+        public static void AddWork(Action action) => Query.Enqueue(action);
          
     }
 }
