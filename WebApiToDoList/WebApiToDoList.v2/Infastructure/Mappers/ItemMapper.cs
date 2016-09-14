@@ -1,12 +1,12 @@
-﻿
 ﻿using WebApiToDoList.v2.Infastructure.Repository.DTO;
 using WebApiToDoList.v2.Models;
 
+namespace WebApiToDoList.v2.Infastructure.Mappers {
     public static class ItemMapper {
         public static Item ToItem(this ToDoItemViewModel model) {
             if (model == null) return null;
             return new Item {
-                Id = model.ToDoId,
+                ToDoId = model.ToDoId,
                 Name = model.Name,
                 UserId = model.UserId,
                 IsCompleted = model.IsCompleted,
@@ -17,7 +17,7 @@ using WebApiToDoList.v2.Models;
             if(item == null)
                 return null;
             return new ToDoItemViewModel {
-                ToDoId = item.Id,
+                ToDoId = item.ToDoId,
                 Name = item.Name,
                 UserId = item.UserId,
                 IsCompleted = item.IsCompleted
