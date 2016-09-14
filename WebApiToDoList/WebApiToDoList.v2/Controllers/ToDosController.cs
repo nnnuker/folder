@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using WebApiToDoList.v2.Infastructure.Repository;
 using WebApiToDoList.v2.Infastructure.Worker;
 using WebApiToDoList.v2.Models;
 using WebApiToDoList.v2.Services;
@@ -11,7 +12,7 @@ namespace WebApiToDoList.v2.Controllers {
     public class ToDosController : ApiController {
         private readonly ToDoService todoService = new ToDoService();
         private readonly UserService userService = new UserService();
-        private bool isInit = false;
+        private bool isInit = LocalRepository.Instance == null;
 
         /// <summary>
         /// Returns all todo-items for the current user.
@@ -22,7 +23,6 @@ namespace WebApiToDoList.v2.Controllers {
             if (isInit) {
                 return todoService.GetItems(userId, isInit);
             } else {
-                isInit = true;
                 return todoService.GetItems(userId, !isInit);
             }
             

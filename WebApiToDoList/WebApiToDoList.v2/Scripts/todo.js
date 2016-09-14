@@ -23,8 +23,14 @@
 
     // starts loading tasks from server.
     // @returns a promise.
-    var loadTasks = function() {
-        return $.getJSON("/api/todos");
+    var loadTasks = function () {
+        $("#divLoader").show();
+        $("#newCreate").hide ();
+        return $.getJSON("/api/todos", function () {
+            $("#divLoader").hide();
+            $("#newCreate").show();
+
+        });
     };
 
     // starts creating a task on the server.
