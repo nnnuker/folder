@@ -14,6 +14,7 @@ namespace WebApiToDoList.v2.Services {
         /// </summary>
         private readonly string serviceApiUrl = ConfigurationManager.AppSettings["ToDoServiceUrl"];
 
+
         /// <summary>
         /// The url for users' creation.
         /// </summary>
