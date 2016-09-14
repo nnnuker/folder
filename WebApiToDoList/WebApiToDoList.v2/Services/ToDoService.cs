@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using WebApiToDoList.Models;
 
-namespace WebApiToDoList.Services {
+namespace WebApiToDoList.v2.Services {
     /// <summary>
     /// Works with ToDo backend.
     /// </summary>

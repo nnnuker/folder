@@ -1,4 +1,4 @@
-﻿namespace WebApiToDoList.Models {
+﻿namespace WebApiToDoList.v2.Models {
     public class ToDoItemViewModel {
         /// <summary>
         /// Gets or sets to do identifier.

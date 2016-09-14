@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using WebApiToDoList.Infastructure.Actions;
-using WebApiToDoList.Infastructure.Repository.DTO;
-using static WebApiToDoList.Infastructure.Worker.Worker;
+using System.Linq;
+using WebApiToDoList.v2.Infastructure.Actions;
+using WebApiToDoList.v2.Infastructure.Repository.DTO;
+using static WebApiToDoList.v2.Infastructure.Worker.Worker;
 
-namespace WebApiToDoList.Infastructure.Repository {
+namespace WebApiToDoList.v2.Infastructure.Repository {
     public class LocalRepository : IRepository {
         private static readonly List<Item> Items = new List<Item>();
         static LocalRepository() { }

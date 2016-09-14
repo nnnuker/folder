@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WebApiToDoList.Infastructure.Worker {
+namespace WebApiToDoList.v2.Infastructure.Worker {
     //TODO: example
     public static class Worker {
         public static QueueTasks Query = new QueueTasks();

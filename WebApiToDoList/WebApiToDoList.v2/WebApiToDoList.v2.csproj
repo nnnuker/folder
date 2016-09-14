@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApiToDoList</RootNamespace>
-    <AssemblyName>WebApiToDoList</AssemblyName>
+    <RootNamespace>WebApiToDoList.v2</RootNamespace>
+    <AssemblyName>WebApiToDoList.v2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -136,18 +136,16 @@
     </Compile>
     <Compile Include="Infastructure\Actions\AddAction.cs" />
     <Compile Include="Infastructure\Actions\DeleteAction.cs" />
-    <Compile Include="Infastructure\Actions\IAction.cs" />
+    <Compile Include="Infastructure\Actions\Action.cs" />
     <Compile Include="Infastructure\Actions\UpdateAction.cs" />
+    <Compile Include="Infastructure\Mappers\ItemMapper.cs" />
     <Compile Include="Infastructure\Worker\QueueTasks.cs" />
     <Compile Include="Infastructure\Worker\Worker.cs" />
-    <Compile Include="Infrastructure\DropBoxHelper.cs" />
-    <Compile Include="Infrastructure\Repositories\IRepository.cs" />
-    <Compile Include="Infrastructure\Repositories\LocalRepository.cs" />
     <Compile Include="Models\ToDoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\DTO\Item.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\LocalRepository.cs" />
+    <Compile Include="Infastructure\Repository\DTO\Item.cs" />
+    <Compile Include="Infastructure\Repository\IRepository.cs" />
+    <Compile Include="Infastructure\Repository\LocalRepository.cs" />
     <Compile Include="Services\ToDoService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
@@ -182,7 +180,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\todo.js" />
+    <Content Include="Scripts\toDo.js" />
     <Content Include="Styles\site.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

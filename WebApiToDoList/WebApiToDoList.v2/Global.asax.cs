@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
-using WebApiToDoList.Infastructure.Worker;
-
-namespace WebApiToDoList
-{
+using WebApiToDoList.v2.Infastructure.Worker;
+    
+namespace WebApiToDoList.v2 {
     public class WebApiApplication : System.Web.HttpApplication {
         //TODO: think about this
         protected async Task Application_Start() {

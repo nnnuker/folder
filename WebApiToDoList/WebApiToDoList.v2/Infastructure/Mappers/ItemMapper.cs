@@ -1,8 +1,7 @@
 ﻿
-using WebApiToDoList.Infastructure.Repository.DTO;
-using WebApiToDoList.Models;
+﻿using WebApiToDoList.v2.Infastructure.Repository.DTO;
+using WebApiToDoList.v2.Models;
 
-namespace WebApiToDoList.Infastructure.Mappers {
     public static class ItemMapper {
         public static Item ToItem(this ToDoItemViewModel model) {
             if (model == null) return null;

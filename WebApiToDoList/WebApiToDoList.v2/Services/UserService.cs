@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
 
-namespace WebApiToDoList.Services {
+namespace WebApiToDoList.v2.Services {
     /// <summary>
     /// Works with Users backend.
     /// </summary>

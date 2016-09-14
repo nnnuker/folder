@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WebApiToDoList.Infastructure.Repository.DTO;
+using WebApiToDoList.v2.Infastructure.Repository.DTO;
 
-namespace WebApiToDoList.Infastructure.Repository {
+namespace WebApiToDoList.v2.Infastructure.Repository {
     public interface IRepository {
         void Add(Item item);
         void Delete(int id);
