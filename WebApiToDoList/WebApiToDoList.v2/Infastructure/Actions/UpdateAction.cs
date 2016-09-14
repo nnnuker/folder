@@ -1,4 +1,6 @@
 ﻿using System.Net.Http;
+using WebApiToDoList.v2.Infastructure.Mappers;
+using WebApiToDoList.v2.Infastructure.Repository;
 using WebApiToDoList.v2.Infastructure.Repository.DTO;
 
 namespace WebApiToDoList.v2.Infastructure.Actions {
@@ -7,12 +9,16 @@ namespace WebApiToDoList.v2.Infastructure.Actions {
         private Item item;
         public UpdateAction(Item item) {
             this.item = item;
-            item.RemoteId = item.RemoteId;
+            
         }
 
         public override void Do() {
-            HttpClient.PutAsJsonAsync(ServiceApiUrl + UpdateUrl, item)
-                      .Result.EnsureSuccessStatusCode();
+            var remoteId = LocalRepository.Instance.Get(item.ToDoId).RemoteId;
+            if (remoteId != null) {
+                item.ToDoId = remoteId.Value;
+                HttpClient.PutAsJsonAsync(ServiceApiUrl + UpdateUrl, item.ToViewModel()).Result.EnsureSuccessStatusCode();
+            }
+
         }
     }
 }

@@ -20,29 +20,40 @@ namespace WebApiToDoList.v2.Infastructure.Repository {
 
         //IList<Item> items;
         public void Add(Item item) {
-            item.ToDoId = ++id;
-            Items.Add(item);
+            LocalAdd(item);
             var remoteIds = (from it in Items where it.RemoteId.HasValue select it.RemoteId.Value).ToList();
             AddWork(new AddAction(item, remoteIds));
         }
+         public void LocalAdd(Item item) {
+            item.ToDoId = ++id;
+            Items.Add(item);
+        }
         //-//-
         public void Delete(int id) {
-            var removeId = Items.Find(item => item.ToDoId == id).RemoteId;
+            var item = Get(id);
+            LocalDelete(id);
+            AddWork(new DeleteAction(item));
+        }
+
+        public void LocalDelete(int id) {
             Items.RemoveAll(item => item.ToDoId == id);
-            AddWork(new DeleteAction(removeId));
         }
 
         public void LocalUpdate(Item item) {
-            var currItem = Items.Find(it => it.ToDoId == item.ToDoId);
-            currItem.Name = item.Name;
-            currItem.IsCompleted = item.IsCompleted;
-            currItem.UserId = item.UserId;
-            currItem.RemoteId = item.RemoteId;
+            var removeId = item.RemoteId;
+            foreach (var it in Items.Where(it => it.ToDoId == item.ToDoId)) {
+                it.Name = item.Name;
+                it.RemoteId = item.RemoteId;
+                it.UserId = item.UserId;
+                it.IsCompleted = item.IsCompleted;
+            }
         }
+
         //-//-
         public void Update(Item item) {
             LocalUpdate(item);
-            AddWork(new UpdateAction(item));
+            var currItem = Items.Find(it => it.ToDoId == item.ToDoId);
+            AddWork(new UpdateAction(currItem));
         }
         public IList<Item> GetAll() {
             return Items;

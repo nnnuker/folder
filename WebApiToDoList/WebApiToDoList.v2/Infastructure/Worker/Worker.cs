@@ -11,16 +11,15 @@ namespace WebApiToDoList.v2.Infastructure.Worker {
         //TODO: use lock 
         public void Run() {
             while (true) {
-                if (!Query.IsEmpty()) {
-                    lockSlim.EnterWriteLock();
-                    try {
+                lockSlim.EnterWriteLock();
+                try {
+                    if (!Query.IsEmpty()) {
                         var task = Query.Dequeue();
                         Task.Run(() => { task.Do(); });
-                        Debug.WriteLine("DO ID!");
                         Thread.Sleep(5);
-                    } finally {
-                        lockSlim.ExitWriteLock();
                     }
+                } finally {
+                        lockSlim.ExitWriteLock();
                 }
             }
         }
