@@ -3,31 +3,24 @@
 <head>
     <title>ToDo list</title>
     <meta charset="utf-8"/>
-    
+    <link href="content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="Styles/site.css">
-
     <script src="Scripts/jquery-3.1.0.js" language="javascript"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/toDo.js" language="javascript"></script>
 </head>
 <body>
-    <table id="tasks">
-        <thead>
-            <tr>
-                <th>Completed</th>
-                <th>Task</th>
-                <th>Actions</th>
-            </tr>
-            <!-- The row for creating new items. -->
-            <tr id="new">
-                <td><input type='checkbox' id="newCompleted" /></td>
-                <td><input type='text' id="newName" /></td>
-                <td><input type='button' id="newCreate" value='Create'/></td>
-                <td id="divLoader" style="display: none;"><img src="/Content/ajax-loader.gif" alt="Loader"/></td>
-          </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="note col-md-9">
+            <div class="todolist">
+                TODO:
+                <input type="text" id = "newName" value ="Create" class="form-control add-todo" placeholder="Add todo"><button id="newCreate" class="btn btn-success">Create</button>
+                <div id="divLoader" style="display: none;"><img src="/Content/ajax-loader.gif" alt="Loader" /></div>
+                <ul id ="listItems" class="list-unstyled"></ul>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
