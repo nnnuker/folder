@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using WebApiToDoList.v2.Infastructure.Repository;
-using WebApiToDoList.v2.Infastructure.Worker;
 using WebApiToDoList.v2.Models;
 using WebApiToDoList.v2.Services;
 
